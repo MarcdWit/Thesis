@@ -20,7 +20,7 @@ df['city'] = df['city'].apply(lambda x: 'Other_Small_City' if x in small_cities 
 # Feature Engineering
 df['Purpose_Leisure'] = df['purp_Leisure_Hobby'].fillna(0)
 
-# Feature selection (Note: 'gender' is excluded from features as we split by it)
+# Feature selection 
 numerical_features = [
     'EFroutes_traffic_infrastructure', 'EFability_to_do_what_i_wanted', 
     'EFcomfort_pleasure', 'activity_count', 'education_level_numeric',
@@ -34,8 +34,7 @@ categorical_features = [
 ]
 # 2. SUBGROUP ANALYSIS FUNCTION
 def run_subgroup_pipeline(df_sub, label):
-    print(f"\n🏗️ Training Final Research Model for: {label} (N={len(df_sub)})")
-    
+        
     X = df_sub[numerical_features + categorical_features].copy()
     y = df_sub['worthwhileness_rating']
 
