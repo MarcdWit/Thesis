@@ -8,7 +8,6 @@ from sklearn.metrics import mean_absolute_error, r2_score
 from sklearn.utils.class_weight import compute_sample_weight
 
 # 1. DATA LOADING & PREP
-print("🚀 Loading Dataset for Gender Subgroup Analysis...")
 df = pd.read_csv('13Final_Thesis_Dataset.csv')
 df = df.dropna(subset=['worthwhileness_rating'])
 
