@@ -18,10 +18,7 @@ warnings.filterwarnings('ignore')
 # 1. DATA LOADING & ROBUST CLEANING
 df = pd.read_csv('13Final_Thesis_Dataset.csv').dropna(subset=['worthwhileness_rating'])
 
-# 1.3 Household size & City noise reduction
-
-#################VGM KAN DIT WEG
-###df['number_people_household'] = pd.to_numeric(df['number_people_household'].replace('5+', '5'), errors='coerce').fillna(1)
+# 1.3 City noise reduction
 threshold = 75 
 city_counts = df['city'].value_counts()
 df['city'] = df['city'].apply(lambda x: 'Other_Small_City' if city_counts[x] < threshold else x)
@@ -68,7 +65,7 @@ kf = KFold(n_splits=5, shuffle=True, random_state=42)
 cv_results = []
 
 for fold, (train_idx, val_idx) in enumerate(kf.split(X_dev, y_dev)):
-    print(f"Processing CV Fold {fold+1}/5...")
+    print(f"Processing CV Fold {fold+1}/5")
     X_tr_cv, X_va_cv = X_dev.iloc[train_idx], X_dev.iloc[val_idx]
     y_tr_cv, y_va_cv = y_dev[train_idx], y_dev[val_idx]
     w = compute_sample_weight(class_weight='balanced', y=y_tr_cv)
